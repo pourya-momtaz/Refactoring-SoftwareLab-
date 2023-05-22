@@ -61,14 +61,14 @@ public class Parser {
     private CodeGenerator cg;
 
     public Parser() {
-        parsStack = new Stack<Integer>();
+        setParsStack(new Stack<Integer>());
         getParsStack().push(0);
         try {
-            parseTable = new ParseTable(Files.readAllLines(Paths.get("src/main/resources/parseTable")).get(0));
+            setParseTable(new ParseTable(Files.readAllLines(Paths.get("src/main/resources/parseTable")).get(0)));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        rules = new ArrayList<Rule>();
+        setRules(new ArrayList<Rule>());
         try {
             for (String stringRule : Files.readAllLines(Paths.get("src/main/resources/Rules"))) {
                 getRules().add(new Rule(stringRule));
@@ -80,7 +80,7 @@ public class Parser {
     }
 
     public void startParse(java.util.Scanner sc) {
-        lexicalAnalyzer = new lexicalAnalyzer(sc);
+        setLexicalAnalyzer(new lexicalAnalyzer(sc));
         Token lookAhead = getLexicalAnalyzer().getNextToken();
         boolean finish = false;
         Action currentAction;
