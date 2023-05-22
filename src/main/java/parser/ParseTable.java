@@ -16,8 +16,8 @@ public class ParseTable {
     private List<Map<NonTerminal, Integer>> gotoTable;
 
     public ParseTable(String jsonTable) throws Exception {
-        jsonTable = jsonTable.substring(2, jsonTable.length() - 2);
-        String[] Rows = jsonTable.split("\\],\\[");
+        String jsonTableMock = jsonTable.substring(2, jsonTable.length() - 2);
+        String[] Rows = jsonTableMock.split("\\],\\[");
         Map<Integer, Token> terminals = new HashMap<Integer, Token>();
         Map<Integer, NonTerminal> nonTerminals = new HashMap<Integer, NonTerminal>();
         Rows[0] = Rows[0].substring(1, Rows[0].length() - 1);
@@ -28,7 +28,7 @@ public class ParseTable {
                 try {
                     nonTerminals.put(i, NonTerminal.valueOf(temp));
                 } catch (Exception e) {
-                    temp = temp;
+                    System.out.println(e.getStackTrace());
                 }
             } else {
                 terminals.put(i, new Token(Token.getTyepFormString(cols[i]), cols[i]));

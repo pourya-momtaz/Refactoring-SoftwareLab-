@@ -234,6 +234,7 @@ public class CodeGenerator {
             symbolTable.getNextParam(className, methodName);
             ErrorHandler.printError("The few argument pass for method");
         } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getStackTrace());
         }
         varType t = varType.Int;
         switch (symbolTable.getMethodReturnType(className, methodName)) {
@@ -461,6 +462,7 @@ public class CodeGenerator {
                 break;
             case Bool:
                 temp = varType.Bool;
+                break;
         }
         if (s.varType != temp) {
             ErrorHandler.printError("The type of method and return address was not match");
